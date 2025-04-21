@@ -22,6 +22,14 @@ class User extends Authenticatable
 
     protected $hidden = [
         'password',
-        'remember_token',
+    ];
+
+    /**
+     * 
+     *
+     * @var array<string, mixed>
+     */
+    protected $attributes = [
+        'is_admin' => false,
     ];
 }

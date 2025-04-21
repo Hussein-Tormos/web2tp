@@ -34,6 +34,9 @@
 <body>
 
     <h2>User Details</h2>
+    <div class="detail-item">
+        <strong>ID:</strong> {{ $user->id }}
+    </div>
 
     <div class="detail-item">
         <strong>First Name:</strong> {{ $user->first_name }}

@@ -22,11 +22,11 @@ class UserController extends Controller
             'last_name' => 'required|string|max:255',
             'gender' => ['required', 'string', Rule::in(['male', 'female'])],
             'email' => 'required|string|email|max:255|unique:users,email',
-            'password' => 'required|string|min:8|confirmed',
+            'password' => 'required|string|min:3|confirmed',
         ]);
 
         try {
-            $user = User::create([
+            User::create([
                 'first_name' => $validatedData['first_name'],
                 'last_name' => $validatedData['last_name'],
                 'gender' => $validatedData['gender'],
@@ -34,9 +34,7 @@ class UserController extends Controller
                 'password' => Hash::make($validatedData['password']),
             ]);
 
-            $welcomeMessage = 'Welcome ' . $user->first_name . ' ' . $user->last_name . '!';
-
-            return redirect()->route('signup.form')->with('success', $welcomeMessage);
+            return redirect()->route('signin.form');
         } catch (\Exception $e) {
             Log::error('User registration failed: ' . $e->getMessage());
             return redirect()->route('signup.form')
