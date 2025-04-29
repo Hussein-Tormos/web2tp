@@ -38,7 +38,7 @@ class MovieController extends Controller
             $thumbnail = $request->file('thumbnail');
             $name = time() . '-' . $thumbnail->getClientOriginalName();
             $thumbnail->storeAs('movies', $name, 'public');
-            $data['thumbnail'] = $name; // Store the filename in the database
+            $data['thumbnail'] = $name;
         }
         Movie::create($data);
 
@@ -91,7 +91,7 @@ class MovieController extends Controller
 
     public function edit(Movie $movie)
     {
-        return view('admin.edit', compact('movie')); // You'll need to create this view
+        return view('admin.edit', compact('movie'));
     }
 
     public function update(Request $request, Movie $movie)
@@ -114,7 +114,7 @@ class MovieController extends Controller
 
         if ($request->hasFile('thumbnail')) {
             if ($movie->thumbnail && Storage::exists('public/movies/' . $movie->thumbnail)) {
-                Storage::delete('public/movies' . $movie->thumbnail);
+                Storage::delete('public/movies/' . $movie->thumbnail);
             }
 
             $thumbnail = $request->file('thumbnail');

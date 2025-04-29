@@ -51,7 +51,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $query = User::query(); // Start building the query
+        $query = User::query();
 
         $searchName = $request->input('search_name');
         $searchEmail = $request->input('search_email');

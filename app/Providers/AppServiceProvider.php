@@ -22,9 +22,5 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->registerPolicies();
-
-        Gate::define('is-admin', function ($user) {
-            return $user->is_admin === true;
-        });
     }
 }
